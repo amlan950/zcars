@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
-module.exports = async () => {
-  return mongoose.connect("mongodb://127.0.0.1:27017/zoomcar");
+const connect = () => {
+  return mongoose.connect(process.env.MONGO_URL);
 };
+
+module.exports = connect;
