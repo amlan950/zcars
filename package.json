@@ -1,0 +1,34 @@
+{
+  "name": "zoomcar-backend",
+  "version": "1.0.0",
+  "description": "amlan",
+  "keywords": [],
+  "homepage": "https://github.com/yashraj-m/ZoomCar-backend#readme",
+  "bugs": {
+    "url": "https://github.com/yashraj-m/ZoomCar-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yashraj-m/ZoomCar-backend.git"
+  },
+  "license": "ISC",
+  "author": "amlan",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^6.13.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
