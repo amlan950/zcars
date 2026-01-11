@@ -38,13 +38,15 @@
 
 
             <div class="showCalender">
-                <input type="date" oninput="startDate()" id="calendertemp" name="trip-start" value="2021-11-10"
-                    min="2021-11-10" max="2025-12-31">
+                <!-- <input type="date" oninput="startDate()" id="calendertemp" name="trip-start" value="2021-11-10"
+                    min="2021-11-10" max="2025-12-31"> -->
+                    <input type="date" oninput="startDate()" id="calendertemp" name="trip-start">
             </div>
 
             <div class="showCalender">
-                <input type="date" oninput="endDate()" id="calendertemp2" name="trip-start" value="2021-11-10" min="2021-11-10"
-                    max="2025-12-31">
+                <!-- <input type="date" oninput="endDate()" id="calendertemp2" name="trip-start" value="2021-11-10" min="2021-11-10"
+                    max="2025-12-31"> -->
+                    <input type="date" oninput="endDate()" id="calendertemp2" name="trip-end">
             </div>
 
         </div>
@@ -74,27 +76,51 @@
 </html>
 
 <script>
+    function setMinDate() {
+        const today = new Date().toISOString().split("T")[0];
 
-    function startDate() {
-        let start = document.getElementById("calendertemp").value;
-        let lbd = document.querySelector(".lbd");
-        lbd.innerText = start;
+        const startInput = document.getElementById("calendertemp");
+        const endInput = document.getElementById("calendertemp2");
+
+        startInput.min = today;
+        endInput.min = today;
+
+        // Auto select today
+        startInput.value = today;
+        endInput.value = today;
+
+        document.querySelector(".lbd").innerText = today;
+        document.querySelector(".rbd").innerText = today;
     }
 
-    function timeChange() {
-        let demo = document.getElementById("demo");
-        let myRange = document.getElementById("myRange").value;
+    window.onload = setMinDate;
 
+function startDate() {
+    let start = document.getElementById("calendertemp").value;
+    let lbd = document.querySelector(".lbd");
+    let endInput = document.getElementById("calendertemp2");
 
-        if (myRange > 12) {
-            demo.innerText = `${myRange}:00 PM`;
+    lbd.innerText = start;
 
-        }
-        else {
-            demo.innerText = `${myRange}:00 AM`;
+    // End date cannot be before start date
+    endInput.min = start;
 
-        }
+    if (endInput.value < start) {
+        endInput.value = start;
+        document.querySelector(".rbd").innerText = start;
     }
+}
+
+function timeChange() {
+    let demo = document.getElementById("demo");
+    let hour = parseInt(document.getElementById("myRange").value);
+
+    let period = hour >= 12 ? "PM" : "AM";
+    let displayHour = hour % 12 || 12;
+
+    demo.innerText = `${displayHour}:00 ${period}`;
+}
+
 
 
     function startTrip(){
